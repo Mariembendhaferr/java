@@ -1,32 +1,34 @@
+package tn.esprit.gestionzoo.entities;
+
 public class Zoo {
-    Animal[] animals;
-    String name;
-    String city;
-    final int nbrCages = 25 ;
-    int nbrAnimals;
+    private Animal[] animals;
+    private String name;
+    private String city;
+    private final int nbrCages = 25 ;
+    private int nbrAnimals;
 
     public Zoo() {}
     public Zoo(String name, String city) {
-        this.name = name;
+        setName(name);
         this.city = city;
         animals = new Animal[nbrCages];
         nbrAnimals = 0;
     }
 
     public void displayZoo(){
-        System.out.println("Zoo name: " + name + ", city: " + city + ", nbrCages: " + nbrCages);
+        System.out.println("tn.esprit.gestionzoo.entities.Zoo name: " + name + ", city: " + city + ", nbrCages: " + nbrCages);
     }
 
     @Override
     public String toString() {
-        return "Zoo name: " + name + ", city: " + city + ", nbrCages: " + nbrCages;
+        return "tn.esprit.gestionzoo.entities.Zoo name: " + name + ", city: " + city + ", nbrCages: " + nbrCages;
     }
 
-    /*public boolean addAnimal(Animal animal) {
+    /*public boolean addAnimal(tn.esprit.gestionzoo.entities.Animal animal) {
         if (nbrAnimals < nbrCages) {
             animals[nbrAnimals] = animal;
             nbrAnimals++;
-            System.out.println("Animal " + animal.name + " ajouté avec succès ");
+            System.out.println("tn.esprit.gestionzoo.entities.Animal " + animal.name + " ajouté avec succès ");
             return  true;
         }
         else  {
@@ -37,18 +39,18 @@ public class Zoo {
 
     public boolean addAnimal(Animal animal) {
         if (searchAnimal(animal) != -1) {
-            System.out.println("L'animal " + animal.name + " existe déjà ");
+            System.out.println("L'animal " + animal.getName() + " existe déjà ");
             return false;
         }
-        else if (nbrAnimals >= nbrCages) {
-            System.out.println("Le zoo est plein " + animal.name);
+        else if (isZooFull()) {
+            System.out.println("Le zoo est plein ");
             return false;
 
         }
         else {
             animals[nbrAnimals] = animal;
             nbrAnimals++;
-            System.out.println("Animal " + animal.name + " ajouté avec succès ");
+            System.out.println("tn.esprit.gestionzoo.entities.Animal " + animal.getName() + " ajouté avec succès ");
             return true;
         }
     }
@@ -66,7 +68,7 @@ public class Zoo {
 
     public int searchAnimal(Animal animal) {
         for (int i = 0; i < nbrAnimals; i++) {
-            if (animals[i].name.equals(animal.name)) {
+            if (animals[i].getName.equals(animal.getName())) {
                 return i;
             }
         }
@@ -77,22 +79,19 @@ public class Zoo {
         int indice = searchAnimal(animal);
 
         if (indice == -1) {
-            System.out.println("L'animal " + animal.name + " n'existe pas dans le zoo !");
+            System.out.println("L'animal " + animal.getName() + " n'existe pas dans le zoo !");
             return false;
         }
         else {
-            // Décaler tous les animaux vers la gauche pour combler le vide
             for (int i = indice; i < nbrAnimals - 1; i++) {
                 animals[i] = animals[i + 1];
             }
 
-            // Supprimer la dernière référence
             animals[nbrAnimals - 1] = null;
 
-            // Décrémenter le compteur d'animaux
             nbrAnimals--;
 
-            System.out.println("Animal " + animal.name + " supprimé avec succès !");
+            System.out.println("tn.esprit.gestionzoo.entities.Animal " + animal.getName() + " supprimé avec succès !");
             return true;
         }
     }
@@ -111,5 +110,34 @@ public class Zoo {
             return z1;
         }
     }
+    // Getters
+    public String getName() {
+        return name;
+    }
 
+    public String getCity() {
+        return city;
+    }
+
+    public int getNbrCages() {
+        return nbrCages;
+    }
+
+    public int getNbrAnimals() {
+        return nbrAnimals;
+    }
+
+    // Setters avec validation
+    public void setName(String name) {
+        if (name == null || name.trim().isEmpty()) {
+            System.out.println("ERREUR: Le nom du zoo ne peut pas être vide ! Nom mis à 'tn.esprit.gestionzoo.entities.Zoo Sans Nom'.");
+            this.name = "tn.esprit.gestionzoo.entities.Zoo Sans Nom";
+        } else {
+            this.name = name;
+        }
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
 }//end of class

@@ -1,10 +1,15 @@
+package tn.esprit.gestionzoo.main;
+
+import tn.esprit.gestionzoo.entities.Animal;
+import tn.esprit.gestionzoo.entities.Zoo;
+
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static void main(String[] args) {
-        /*Animal chat = new Animal();
-        Animal chien = new Animal();
-        Zoo frigya = new Zoo();
+        /*tn.esprit.gestionzoo.entities.Animal chat = new tn.esprit.gestionzoo.entities.Animal();
+        tn.esprit.gestionzoo.entities.Animal chien = new tn.esprit.gestionzoo.entities.Animal();
+        tn.esprit.gestionzoo.entities.Zoo frigya = new tn.esprit.gestionzoo.entities.Zoo();
         chien.family="chien";
         chien.name="boby";
         chien.age=2;
@@ -21,7 +26,7 @@ public class Main {
         System.out.println("frigya : "+frigya);*/
 
         //creation de la zoo et des animaux
-        Zoo zoo = new Zoo("my Zoo","tunisie");
+        Zoo zoo = new Zoo("my tn.esprit.gestionzoo.entities.Zoo","tunisie");
         Animal animal = new Animal("Chat","katis",2,true);
         Animal animal2 = new Animal("Chien","loulou",1,true);
         Animal animal3 = new Animal("Lion","Mike",1,true);
@@ -86,7 +91,7 @@ public class Main {
         if (zoo.isZooFull()) {
             System.out.println("Plus de place !");
         } else {
-            System.out.println("Encore " + (25 - zoo.nbrAnimals) + " places libres");
+            System.out.println("Encore " + (25 - zoo.getNbrAnimals()) + " places libres");
         }
     }
 }
